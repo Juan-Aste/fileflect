@@ -9,14 +9,14 @@ describe("sourceUrl", () => {
   });
 
   it("accepts an https URL", () => {
-    expect(sourceUrl("https://github.com/Juan-Aste/fileflip")).toBe("https://github.com/Juan-Aste/fileflip");
-    expect(sourceUrl(" https://github.com/Juan-Aste/fileflip/tree/main ")).toBe("https://github.com/Juan-Aste/fileflip/tree/main");
+    expect(sourceUrl("https://github.com/Juan-Aste/fileflect")).toBe("https://github.com/Juan-Aste/fileflect");
+    expect(sourceUrl(" https://github.com/Juan-Aste/fileflect/tree/main ")).toBe("https://github.com/Juan-Aste/fileflect/tree/main");
   });
 
   it("rejects anything else", () => {
-    expect(sourceUrl("http://github.com/Juan-Aste/fileflip")).toBe("");
+    expect(sourceUrl("http://github.com/Juan-Aste/fileflect")).toBe("");
     expect(sourceUrl("javascript:alert(1)")).toBe("");
-    expect(sourceUrl("github.com/Juan-Aste/fileflip")).toBe("");
+    expect(sourceUrl("github.com/Juan-Aste/fileflect")).toBe("");
     expect(sourceUrl("https://user:pass@example.com/repo")).toBe("");
   });
 });

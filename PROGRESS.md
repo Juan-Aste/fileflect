@@ -4180,3 +4180,8 @@ FASE 18 TERMINADA
 - `docs/launch-checklist.md` §9a: pasos del dueño en Search Console después del merge (reenviar el sitemap, validar la corrección del informe de 404, pedir la indexación de la portada, «Quiénes somos», el índice de guías y las guías nuevas; esperar semanas antes de volver a pedir AdSense).
 
 FASE 19 TERMINADA (es la «FASE 17» de la tarea programada: calidad para Google y AdSense).
+
+## 2026-11-18 — Repo renombrado a `Juan-Aste/fileflect`
+- El dueño renombró el repo de GitHub `Juan-Aste/fileflip` → `Juan-Aste/fileflect` (GitHub redirige el nombre viejo; no crear otro repo llamado `fileflip`).
+- Actualizadas las menciones en README (clonar y `cd fileflect`), `.env.example`, `docs/launch-checklist.md`, `docs/modelos-r2.md` y el test de `sourceUrl`. Las entradas viejas de este archivo quedan como historial.
+- Pendiente del dueño: `NEXT_PUBLIC_SOURCE_URL=https://github.com/Juan-Aste/fileflect` en Railway y redesplegar; verificar que el servicio `app` de Railway siga conectado al repo; repo de la tarea programada en claude.ai/code. `MONGODB_URI` de ejemplo mantiene la base local `fileflip` (es solo el nombre de la base).
