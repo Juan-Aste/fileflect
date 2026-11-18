@@ -4185,3 +4185,7 @@ FASE 19 TERMINADA (es la «FASE 17» de la tarea programada: calidad para Google
 - El dueño renombró el repo de GitHub `Juan-Aste/fileflip` → `Juan-Aste/fileflect` (GitHub redirige el nombre viejo; no crear otro repo llamado `fileflip`).
 - Actualizadas las menciones en README (clonar y `cd fileflect`), `.env.example`, `docs/launch-checklist.md`, `docs/modelos-r2.md` y el test de `sourceUrl`. Las entradas viejas de este archivo quedan como historial.
 - Pendiente del dueño: `NEXT_PUBLIC_SOURCE_URL=https://github.com/Juan-Aste/fileflect` en Railway y redesplegar; verificar que el servicio `app` de Railway siga conectado al repo; repo de la tarea programada en claude.ai/code. `MONGODB_URI` de ejemplo mantiene la base local `fileflip` (es solo el nombre de la base).
+
+## 2026-11-18 — Sin recuadro blanco de anuncio antes de la aprobación de AdSense
+- Con `NEXT_PUBLIC_ADSENSE_CLIENT` cargado pero sin bloques aprobados (`NEXT_PUBLIC_ADSENSE_SLOT_*` vacías), cada página mostraba un recuadro blanco vacío de 300×600 bajo «Anuncio». Ahora `AdSlot` no dibuja nada si no hay id de bloque, y una regla en `globals.css` oculta (sin mover nada: `visibility: hidden`, CLS 0) los bloques que AdSense marca `data-ad-status="unfilled"` y su etiqueta.
+- `tests/e2e/adsense-head.spec.ts` ajustado (con id de cliente y sin id de bloque espera 0 `ins.adsbygoogle`; la prueba del bloque oculto pide también `NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR`).
