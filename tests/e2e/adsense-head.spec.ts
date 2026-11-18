@@ -7,10 +7,13 @@
 // Not the 404s of unknown tool slugs: Next sends them as its error shell,
 // whose <head> is filled in on the client (noindex, not reviewed by AdSense).
 // Run it both ways: `npm run build && npx playwright test adsense-head`, and
-// again with NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-0000000000000000 for both.
+// again with NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-0000000000000000 and
+// NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR=0000000000 for both. With a client id but
+// no ad unit id (site not approved yet) the slots render nothing at all.
 import { expect, test } from "./support";
 
 const client = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+const sidebarSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR;
 const loader = /<script[^>]*src="https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=([^"&]*)"[^>]*>/g;
 const meta = /<meta name="google-adsense-account" content="([^"]*)"/g;
 
@@ -51,8 +54,10 @@ test("the loader runs once on a page with ad slots", async ({ page, context }) =
     return route.fulfill({ status: 200, contentType: "text/javascript", body: "" });
   });
   await page.goto("/es/png-a-jpg", { waitUntil: "networkidle" });
-  // The sidebar slot fills in once the session is known.
-  await expect(page.locator(client ? "ins.adsbygoogle" : "aside[aria-label] .border-dashed").first()).toBeAttached();
+  // The sidebar slot fills in once the session is known; with a client id but
+  // no ad unit yet, no slot is rendered (no empty white box).
+  if (client && !sidebarSlot) await expect(page.locator("ins.adsbygoogle")).toHaveCount(0);
+  else await expect(page.locator(client ? "ins.adsbygoogle" : "aside[aria-label] .border-dashed").first()).toBeAttached();
   const scripts = await page.locator('script[src*="adsbygoogle.js"]').count();
   expect(scripts).toBe(client ? 1 : 0);
   expect(requests.filter((u) => u.includes("adsbygoogle.js"))).toHaveLength(client ? 1 : 0);
@@ -66,7 +71,7 @@ test("/ads.txt", async ({ request }) => {
 });
 
 test("a slot hidden by CSS is not filled until it shows", async ({ page, context }) => {
-  test.skip(!client, "needs a build with NEXT_PUBLIC_ADSENSE_CLIENT");
+  test.skip(!client || !sidebarSlot, "needs a build with NEXT_PUBLIC_ADSENSE_CLIENT and NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR");
   // The stub leaves window.adsbygoogle a plain array, so pushes can be counted.
   await context.route(/googlesyndication\.com/, (route) => route.fulfill({ status: 200, contentType: "text/javascript", body: "" }));
   const pushes = () => page.evaluate(() => (window as { adsbygoogle?: unknown[] }).adsbygoogle?.length ?? 0);

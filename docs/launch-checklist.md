@@ -8,7 +8,7 @@ Pasos concretos y en orden. Las explicaciones largas están en [DEPLOY.md](../DE
 - [ ] Plan Pro: queda **apagado** (`PRO_ENABLED=false`) hasta la inscripción fiscal. Antes de encenderlo: revisar los precios por país en `src/config/pricing.ts`, construir los botones de arrepentimiento y de baja, y resolver B-27 (`docs/bug-audit.md`).
 
 ## 1. Railway: servicios ([DEPLOY.md §1](../DEPLOY.md#1-crear-el-proyecto))
-- [ ] Proyecto nuevo desde el repo `Juan-Aste/fileflip`, rama **`main`**; servicio `app` (usa el `Dockerfile`).
+- [ ] Proyecto nuevo desde el repo `Juan-Aste/fileflect`, rama **`main`**; servicio `app` (usa el `Dockerfile`).
 - [ ] Base de datos **MongoDB** (Railway o Atlas).
 - [ ] Servicio `gotenberg` con la imagen `gotenberg/gotenberg:8`, **sin dominio público**, 1 GB de memoria o más, y este *Custom Start Command*:
   ```
@@ -43,7 +43,7 @@ Las `NEXT_PUBLIC_*` se fijan al construir: si se cambian, redesplegar.
 | `NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR` | `1234567890` |
 | `NEXT_PUBLIC_ADSENSE_SLOT_RESULT` | `0987654321` |
 | `NEXT_PUBLIC_MODELS_BASE_URL` | `https://modelos.fileflect.com` (opcional: copia propia de los modelos de IA en Cloudflare R2, [docs/modelos-r2.md](modelos-r2.md); vacía = solo Hugging Face) |
-| `NEXT_PUBLIC_SOURCE_URL` | `https://github.com/Juan-Aste/fileflip` (opcional: solo cuando el repo sea público; muestra «Código fuente» en el footer y en créditos, obligación de la AGPL-3.0 §13; vacía = no aparece) |
+| `NEXT_PUBLIC_SOURCE_URL` | `https://github.com/Juan-Aste/fileflect` (opcional: solo cuando el repo sea público; muestra «Código fuente» en el footer y en créditos, obligación de la AGPL-3.0 §13; vacía = no aparece) |
 | `GOOGLE_TTS_API_KEY` | (opcional, fase 13: clave de Google Cloud Text-to-Speech restringida a esa API, [docs/tts-nube.md](tts-nube.md); vacía = no hay «Voz IA (nube)». **Solo del servidor**, nunca `NEXT_PUBLIC_`) |
 | `TTS_MONTHLY_CHAR_LIMIT` | `3500000` (opcional: tope mensual global de la voz en la nube; también `TTS_DAILY_CHARS_ANON`=20000, `TTS_DAILY_CHARS_USER`=100000, `TTS_REQUESTS_PER_MINUTE`=60) |
 | `RATE_LIMIT_PER_MINUTE` | `20` |
@@ -127,7 +127,7 @@ Pasos completos en [`docs/modelos-r2.md`](modelos-r2.md). Sin esto, la voz IA y 
 Antes: [`docs/escaneo-secretos.md`](escaneo-secretos.md) (sin secretos en el historial) y [`docs/licencia-agpl.md`](licencia-agpl.md) (licencias compatibles con la AGPL-3.0-or-later).
 - [ ] Mergear `dev` en `main` (trae `LICENSE`, el README público y el campo `license`).
 - [ ] GitHub → Settings → General → Danger Zone → Change visibility → Public.
-- [ ] Railway: `NEXT_PUBLIC_SOURCE_URL=https://github.com/Juan-Aste/fileflip` y redesplegar.
+- [ ] Railway: `NEXT_PUBLIC_SOURCE_URL=https://github.com/Juan-Aste/fileflect` y redesplegar.
 - [ ] Comprobar: el footer y `/es/creditos` muestran «Código fuente» con el enlace al repositorio.
 
 ## 9d. Voz IA en la nube (opcional, fase 13.3)

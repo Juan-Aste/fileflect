@@ -266,3 +266,11 @@ h3 {
   background: none;
   padding: 0;
 }
+
+/* AdSense marks a slot it could not fill (no ad, site not approved yet, ad
+   blocker…) with data-ad-status="unfilled" and leaves an empty white box.
+   Hide it and its label but keep the space, so nothing shifts (CLS 0). */
+ins.adsbygoogle[data-ad-status="unfilled"],
+aside:has(> ins.adsbygoogle[data-ad-status="unfilled"]) > span {
+  visibility: hidden;
+}

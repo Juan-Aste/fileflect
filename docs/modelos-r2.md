@@ -59,7 +59,7 @@ El navegador descarga los archivos con `fetch` desde las páginas de `fileflect.
 Necesitás **Node.js 22 LTS** (https://nodejs.org) y una copia del repositorio en la rama `main` (o `dev`).
 
 ```bash
-cd fileflip
+cd fileflect
 npm ci
 ```
 

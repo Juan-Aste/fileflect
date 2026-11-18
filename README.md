@@ -13,8 +13,8 @@ Hecho con Next.js 15, React 19, TypeScript, Tailwind CSS y next-intl. Lo que el 
 Necesitas Node.js 20.9 o posterior (el sitio usa 22) y, para las herramientas de servidor, Docker.
 
 ```bash
-git clone https://github.com/Juan-Aste/fileflip.git
-cd fileflip
+git clone https://github.com/Juan-Aste/fileflect.git
+cd fileflect
 npm ci
 cp .env.example .env.local   # completa lo que necesites (ver abajo)
 docker compose up -d         # MongoDB en :27017 y Gotenberg en :3001
@@ -84,8 +84,8 @@ Built with Next.js 15, React 19, TypeScript, Tailwind CSS and next-intl. What th
 You need Node.js 20.9 or later (the site uses 22) and, for the server-side tools, Docker.
 
 ```bash
-git clone https://github.com/Juan-Aste/fileflip.git
-cd fileflip
+git clone https://github.com/Juan-Aste/fileflect.git
+cd fileflect
 npm ci
 cp .env.example .env.local   # fill in what you need (see below)
 docker compose up -d         # MongoDB on :27017 and Gotenberg on :3001
