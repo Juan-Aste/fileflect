@@ -61,7 +61,7 @@ export default function AdSlot({ placement, className = "" }: { placement: AdPla
 
   if (mode === "hidden") return null;
   // No ad unit configured yet (AdSense not approved): show nothing rather
-  // than an empty box. The sidebar column keeps its width, so nothing moves.
+  // than an empty box (WithSidebarAd also leaves the sidebar column out).
   if (mode === "ad" && !SLOTS[placement]) return null;
 
   if (mode === "reserved") {

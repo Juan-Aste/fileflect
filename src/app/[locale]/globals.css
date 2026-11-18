@@ -274,3 +274,9 @@ ins.adsbygoogle[data-ad-status="unfilled"],
 aside:has(> ins.adsbygoogle[data-ad-status="unfilled"]) > span {
   visibility: hidden;
 }
+
+/* Sidebar ad column with nothing in it (Pro users never see ads): drop it so
+   the content is centred instead of pushed to one side. */
+.ad-column:has(> div:empty) {
+  display: none;
+}
