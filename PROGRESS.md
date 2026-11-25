@@ -4190,3 +4190,12 @@ FASE 19 TERMINADA (es la «FASE 17» de la tarea programada: calidad para Google
 - Con `NEXT_PUBLIC_ADSENSE_CLIENT` cargado pero sin bloques aprobados (`NEXT_PUBLIC_ADSENSE_SLOT_*` vacías), cada página mostraba un recuadro blanco vacío de 300×600 bajo «Anuncio». Ahora `AdSlot` no dibuja nada si no hay id de bloque, y una regla en `globals.css` oculta (sin mover nada: `visibility: hidden`, CLS 0) los bloques que AdSense marca `data-ad-status="unfilled"` y su etiqueta.
 - `tests/e2e/adsense-head.spec.ts` ajustado (con id de cliente y sin id de bloque espera 0 `ins.adsbygoogle`; la prueba del bloque oculto pide también `NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR`).
 - Contenido centrado sin anuncios: `WithSidebarAd` no dibuja la columna lateral si hay id de cliente pero no `NEXT_PUBLIC_ADSENSE_SLOT_SIDEBAR`, y `globals.css` la oculta cuando queda vacía (usuarios Pro). Con el bloque configurado vuelve el diseño con columna.
+
+## 2026-11-25 — Ejecución semanal automática
+- Guía nueva: «Cómo unir varios PDF en uno solo (y en qué orden)» → `/es/guias/como-unir-pdf-en-uno-solo` (+ en, pt, fr, zh, 1 captura por idioma). Verificado en el código: al unir se pierden los campos de formulario (comprobado con pdf-lib) y los marcadores; PDF con contraseña de apertura no se une.
+- Mantenimiento: `npm audit fix` sin `--force` (mongoose 9.13, fast-xml-parser 5.12, parches); regeneradas credits y avisos. Quedan `next` y `postcss` (requieren salto mayor), `nodemailer` (sin arreglo): decide el dueño. El diff del lock no pasó por Opus (solo parches).
+- CI: los jobs `e2e-browsers` y `e2e-ai-voice` fallaron en los pasos de instalación de navegadores/ffmpeg (no en tests); revisar si se repite.
+- Opus marcó: una «y» de más, aclarar que Word → PDF es en servidor y un giro en fr; los tres corregidos.
+
+## 2026-11-24 — CI: runners fijados en ubuntu-24.04
+- GitHub pasó `ubuntu-latest` a Ubuntu 26.04 y Playwright todavía no instala Chromium ahí («Playwright does not support chromium on ubuntu26.04-x64»), así que fallaban `e2e-ai-voice` y `e2e-browsers` (solo corren en los PR). Los tres jobs usan ahora `ubuntu-24.04`.

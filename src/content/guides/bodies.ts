@@ -69,6 +69,11 @@ import fillPdfFormEs from "./bodies/fill-pdf-form.es";
 import fillPdfFormFr from "./bodies/fill-pdf-form.fr";
 import fillPdfFormPt from "./bodies/fill-pdf-form.pt";
 import fillPdfFormZh from "./bodies/fill-pdf-form.zh";
+import mergePdfEn from "./bodies/merge-pdf.en";
+import mergePdfEs from "./bodies/merge-pdf.es";
+import mergePdfFr from "./bodies/merge-pdf.fr";
+import mergePdfPt from "./bodies/merge-pdf.pt";
+import mergePdfZh from "./bodies/merge-pdf.zh";
 import oldVideoToMp4En from "./bodies/old-video-to-mp4.en";
 import oldVideoToMp4Es from "./bodies/old-video-to-mp4.es";
 import oldVideoToMp4Fr from "./bodies/old-video-to-mp4.fr";
@@ -99,5 +104,6 @@ export const guideBodies: Record<string, Partial<Record<Locale, string>>> = {
   "id-photo": { es: idPhotoEs, en: idPhotoEn, pt: idPhotoPt, fr: idPhotoFr, zh: idPhotoZh },
   "fill-pdf-form": { es: fillPdfFormEs, en: fillPdfFormEn, pt: fillPdfFormPt, fr: fillPdfFormFr, zh: fillPdfFormZh },
   "old-video-to-mp4": { es: oldVideoToMp4Es, en: oldVideoToMp4En, pt: oldVideoToMp4Pt, fr: oldVideoToMp4Fr, zh: oldVideoToMp4Zh },
+  "merge-pdf": { es: mergePdfEs, en: mergePdfEn, pt: mergePdfPt, fr: mergePdfFr, zh: mergePdfZh },
   "edit-pdf": { es: editPdfEs, en: editPdfEn, pt: editPdfPt, fr: editPdfFr, zh: editPdfZh },
 };

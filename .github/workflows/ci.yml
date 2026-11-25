@@ -23,8 +23,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # ubuntu-24.04, not ubuntu-latest: ubuntu-latest moved to 26.04 in Nov 2026
+  # and Playwright cannot install its browsers there yet.
   check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -65,7 +67,7 @@ jobs:
   # cached browser profile, so it is downloaded once per model version.
   e2e-ai-voice:
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -116,7 +118,7 @@ jobs:
   # which that image lacks and can't install as its non-root user.
   e2e-browsers:
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4

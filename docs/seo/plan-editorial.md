@@ -9,13 +9,13 @@ Plan para seguir publicando guías después de la fase 19, **de a 1 o 2 por sema
 - En `src/content/guides/meta.ts`: `published`/`updated` con la fecha real, `tools`, `related` y `mainFor` (las páginas de herramienta o conversión que la enlazan en «Guías paso a paso»).
 - Después de publicar: en Search Console, inspeccionar la URL nueva en español y pedir la indexación.
 
-Ya publicadas (16): PDF a Word, JPG/PNG/WebP/AVIF, reducir el peso de un PDF, HEIC a JPG, tabla de PDF a Excel, CSV o Excel, transcribir audio, leer en voz alta, firmar un PDF, PDF/A, editar un PDF, rellenar un formulario PDF, quitar el fondo de una foto, videos viejos a MP4, comparar dos textos y foto carnet.
+Ya publicadas (17): PDF a Word, JPG/PNG/WebP/AVIF, reducir el peso de un PDF, HEIC a JPG, tabla de PDF a Excel, CSV o Excel, transcribir audio, leer en voz alta, firmar un PDF, PDF/A, editar un PDF, rellenar un formulario PDF, quitar el fondo de una foto, videos viejos a MP4, comparar dos textos, foto carnet y unir PDF (2026-11-25).
 
 ## Próximas 12 guías (en este orden)
 
 | # | Título (es) | Búsqueda objetivo | Herramientas | Puntos clave |
 |---|---|---|---|---|
-| 1 | Cómo unir varios PDF en uno solo (y en qué orden) | «unir pdf», «juntar pdf» | Unir PDF, Ordenar PDF, Comprimir PDF | Ordenar archivos y páginas antes de unir; PDF con contraseña (quitarla antes); mezclar escaneos y documentos; si el resultado pesa mucho, comprimir; todo en el navegador. |
+| 1 | **Publicada 2026-11-25** — Cómo unir varios PDF en uno solo (y en qué orden) | «unir pdf», «juntar pdf» | Unir PDF, Ordenar PDF, Comprimir PDF | Ordenar archivos y páginas antes de unir; PDF con contraseña (quitarla antes); mezclar escaneos y documentos; si el resultado pesa mucho, comprimir; todo en el navegador. |
 | 2 | Cómo escanear un documento con el celular y guardarlo en PDF | «escanear documento con el celular», «foto a pdf» | Escanear documento, Imágenes a PDF, Comprimir PDF | Luz y fondo para la foto; recorte de bordes y perspectiva; varias páginas en un PDF; qué tamaño esperar; cuándo conviene el OCR para poder buscar texto. |
 | 3 | Cómo sacar el texto de una foto o de una captura | «pasar imagen a texto», «copiar texto de una imagen» | Imagen a texto (OCR), OCR de PDF escaneado | Idiomas que reconoce; qué fotos funcionan y cuáles no (manuscrito, poca luz); revisar errores típicos; PDF escaneado → PDF con texto buscable. |
 | 4 | Cómo reducir el tamaño de una foto sin que se note | «reducir tamaño de imagen», «comprimir foto» | Comprimir imagen, Redimensionar imagen, conversiones a WEBP | Peso vs. resolución; cuántos píxeles hacen falta para WhatsApp, correo o una web; calidad recomendada con números medidos; formatos (enlazar la guía de formatos). |

@@ -419,6 +419,26 @@
     "width": 800,
     "height": 996
   },
+  "unir-pdf-lista": {
+    "width": 800,
+    "height": 481
+  },
+  "unir-pdf-lista.en": {
+    "width": 800,
+    "height": 481
+  },
+  "unir-pdf-lista.fr": {
+    "width": 800,
+    "height": 481
+  },
+  "unir-pdf-lista.pt": {
+    "width": 800,
+    "height": 481
+  },
+  "unir-pdf-lista.zh": {
+    "width": 800,
+    "height": 481
+  },
   "video-viejo-mp4-elegir": {
     "width": 800,
     "height": 574

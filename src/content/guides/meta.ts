@@ -65,6 +65,7 @@ export const plannedGuideIds = [
   "old-video-to-mp4",
   "compare-text",
   "id-photo",
+  "merge-pdf",
 ] as const;
 
 export const guides: GuideMeta[] = [
@@ -657,6 +658,43 @@ export const guides: GuideMeta[] = [
         slug: "how-to-edit-a-pdf-for-free",
         title: "如何免费编辑 PDF，无需安装任何软件",
         description: "在浏览器中为 PDF 添加文字、高亮、箭头和图片，或遮盖个人信息：哪些内容可以修改、如何改正原有文字，以及什么时候该转成 Word。",
+      },
+    },
+  },
+  {
+    id: "merge-pdf",
+    published: "2026-11-25",
+    updated: "2026-11-25",
+    tools: ["merge-pdf", "organize-pdf", "delete-pdf-pages", "split-pdf", "images-to-pdf", "scan-document", "unlock-pdf", "protect-pdf", "compress-pdf"],
+    related: ["reduce-pdf-size", "fill-pdf-form", "edit-pdf"],
+    mainFor: { tools: ["merge-pdf"] },
+    howTo: true,
+    image: "unir-pdf-lista",
+    versions: {
+      es: {
+        slug: "como-unir-pdf-en-uno-solo",
+        title: "Cómo unir varios PDF en uno solo (y en qué orden)",
+        description: "Junta varios PDF en uno sin subirlos: cómo ordenar archivos y páginas, qué hacer con PDF con contraseña, fotos o escaneos, y qué no conserva el PDF unido.",
+      },
+      en: {
+        slug: "how-to-merge-pdf-files-into-one",
+        title: "How to merge several PDFs into one (and in what order)",
+        description: "Merge several PDFs into one without uploading them: order files and pages, handle password-protected PDFs, photos or scans, and what the merged PDF doesn’t keep.",
+      },
+      pt: {
+        slug: "como-juntar-pdf-em-um-so",
+        title: "Como juntar vários PDFs em um só (e em que ordem)",
+        description: "Junte vários PDFs em um só sem enviá-los: como ordenar arquivos e páginas, o que fazer com PDFs com senha, fotos ou digitalizações e o que o PDF unido não mantém.",
+      },
+      fr: {
+        slug: "comment-fusionner-des-pdf-en-un-seul",
+        title: "Comment fusionner plusieurs PDF en un seul (et dans quel ordre)",
+        description: "Fusionnez plusieurs PDF sans les envoyer : ordre des fichiers et des pages, PDF protégés, photos ou scans, et ce que le PDF fusionné ne conserve pas.",
+      },
+      zh: {
+        slug: "how-to-merge-pdf-files-into-one",
+        title: "如何把多个 PDF 合并成一个（以及按什么顺序）",
+        description: "无需上传到任何服务器，把多个 PDF 合并成一个：如何排好文件和页面顺序，带密码的 PDF、照片和扫描件怎么处理，以及合并后的 PDF 不会保留什么。",
       },
     },
   },

@@ -1241,7 +1241,7 @@
     },
     {
       "name": "fast-xml-builder",
-      "version": "1.3.1",
+      "version": "1.3.2",
       "license": "MIT",
       "author": "Amit Gupta",
       "url": "https://github.com/NaturalIntelligence/fast-xml-builder",
@@ -1252,7 +1252,7 @@
     },
     {
       "name": "fast-xml-parser",
-      "version": "5.11.2",
+      "version": "5.12.1",
       "license": "MIT",
       "author": "Amit Gupta",
       "url": "https://github.com/NaturalIntelligence/fast-xml-parser",
@@ -1465,7 +1465,7 @@
     },
     {
       "name": "is-unsafe",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "license": "MIT",
       "author": "Amit Gupta",
       "url": "https://github.com/NaturalIntelligence/is-unsafe",
@@ -1684,7 +1684,7 @@
     },
     {
       "name": "mongodb",
-      "version": "7.7.0",
+      "version": "7.9.1",
       "license": "Apache-2.0",
       "author": "The MongoDB NodeJS Team",
       "url": "https://github.com/mongodb/node-mongodb-native",
@@ -1715,7 +1715,7 @@
     },
     {
       "name": "mongoose",
-      "version": "9.11.2",
+      "version": "9.13.1",
       "license": "MIT",
       "author": "Guillermo Rauch",
       "url": "https://mongoosejs.com",
@@ -1737,7 +1737,7 @@
     },
     {
       "name": "mquery",
-      "version": "6.0.0",
+      "version": "6.0.1",
       "license": "MIT",
       "author": "Aaron Heckmann",
       "url": "https://github.com/aheckmann/mquery/",
@@ -2352,7 +2352,7 @@
     },
     {
       "name": "sift",
-      "version": "17.1.3",
+      "version": "17.1.4",
       "license": "MIT",
       "author": "Craig Condon",
       "url": "https://github.com/crcn/sift.js",

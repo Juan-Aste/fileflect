@@ -9067,7 +9067,7 @@ SOFTWARE.
 
 
 ==============================================================================
-fast-xml-builder 1.3.1
+fast-xml-builder 1.3.2
 License: MIT
 Project: https://github.com/NaturalIntelligence/fast-xml-builder
 Author: Amit Gupta
@@ -9098,7 +9098,7 @@ SOFTWARE.
 
 
 ==============================================================================
-fast-xml-parser 5.11.2
+fast-xml-parser 5.12.1
 License: MIT
 Project: https://github.com/NaturalIntelligence/fast-xml-parser
 Author: Amit Gupta
@@ -9821,7 +9821,7 @@ THE SOFTWARE.
 
 
 ==============================================================================
-is-unsafe 2.0.2
+is-unsafe 2.0.3
 License: MIT
 Project: https://github.com/NaturalIntelligence/is-unsafe
 Author: Amit Gupta
@@ -12285,7 +12285,7 @@ Apache License
 
 
 ==============================================================================
-mongodb 7.7.0
+mongodb 7.9.1
 License: Apache-2.0
 Project: https://github.com/mongodb/node-mongodb-native
 Author: The MongoDB NodeJS Team
@@ -12896,7 +12896,7 @@ Project: https://github.com/mongodb-js/mongodb-connection-string-url
 
 
 ==============================================================================
-mongoose 9.11.2
+mongoose 9.13.1
 License: MIT
 Project: https://mongoosejs.com
 Author: Guillermo Rauch
@@ -12960,7 +12960,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 ==============================================================================
-mquery 6.0.0
+mquery 6.0.1
 License: MIT
 Project: https://github.com/aheckmann/mquery/
 Author: Aaron Heckmann
@@ -15304,7 +15304,7 @@ third-party archives.
 
 
 ==============================================================================
-sift 17.1.3
+sift 17.1.4
 License: MIT
 Project: https://github.com/crcn/sift.js
 Author: Craig Condon
