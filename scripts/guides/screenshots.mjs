@@ -570,6 +570,28 @@ const noticeSamples = {
 /** Where things are on the notice, in px of the 794 × 1122 page. */
 const notice = { date: { x: 96, y: 300, w: 300 }, time: { x: 96, value: 175, y: 340 }, contact: { x: 96, y: 610, w: 330 } };
 
+/** Three small PDFs named in the order of a file (request, receipt, contract), for the merge guide. */
+const mergeNames = {
+  es: [["01-solicitud", "Solicitud"], ["02-comprobante", "Comprobante de pago"], ["03-contrato", "Contrato"]],
+  en: [["01-application", "Application"], ["02-receipt", "Payment receipt"], ["03-contract", "Contract"]],
+  pt: [["01-requerimento", "Requerimento"], ["02-comprovante", "Comprovante de pagamento"], ["03-contrato", "Contrato"]],
+  fr: [["01-demande", "Demande"], ["02-justificatif", "Justificatif de paiement"], ["03-contrat", "Contrat"]],
+  zh: [["01-申请表", "申请表"], ["02-付款凭证", "付款凭证"], ["03-合同", "合同"]],
+};
+async function mergeSamplePdfs(browser, locale) {
+  const page = await browser.newPage();
+  const files = [];
+  for (const [name, title] of mergeNames[locale]) {
+    await page.setContent(
+      `<body style="margin:0;font:15px/1.7 sans-serif;color:#222"><div style="width:794px;height:1122px;padding:90px 96px;box-sizing:border-box"><h1 style="font-size:26px">${title}</h1><p style="color:#666">________________________</p></div></body>`,
+    );
+    // As buffers: the browser may not get names with Chinese characters from a path.
+    files.push({ name: `${name}.pdf`, mimeType: "application/pdf", buffer: await page.pdf({ width: "794px", height: "1122px", printBackground: true }) });
+  }
+  await page.close();
+  return files;
+}
+
 async function noticePdf(browser, locale) {
   const s = noticeSamples[locale];
   const page = await browser.newPage();
@@ -762,6 +784,12 @@ const shots = {
     const [before, after] = msg(l, "IdPhotoTool.doneSheet").split("{copies}");
     const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     await page.getByText(new RegExp(`^${escape(before)}\\d+${escape(after)}$`)).waitFor({ timeout: 60_000 });
+    return toolBlock(page);
+  },
+  "unir-pdf-lista": async (page, l, browser) => {
+    await open(page, l, toolSlug("merge-pdf", l));
+    await pick(page, l, await mergeSamplePdfs(browser, l));
+    await page.getByRole("button", { name: msg(l, "Tools.merge-pdf.action"), exact: true }).waitFor({ timeout: 30_000 });
     return toolBlock(page);
   },
   "rellenar-formulario-campos": async (page, l, browser) => {
