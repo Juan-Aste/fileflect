@@ -4196,3 +4196,6 @@ FASE 19 TERMINADA (es la «FASE 17» de la tarea programada: calidad para Google
 - Mantenimiento: `npm audit fix` sin `--force` (mongoose 9.13, fast-xml-parser 5.12, parches); regeneradas credits y avisos. Quedan `next` y `postcss` (requieren salto mayor), `nodemailer` (sin arreglo): decide el dueño. El diff del lock no pasó por Opus (solo parches).
 - CI: los jobs `e2e-browsers` y `e2e-ai-voice` fallaron en los pasos de instalación de navegadores/ffmpeg (no en tests); revisar si se repite.
 - Opus marcó: una «y» de más, aclarar que Word → PDF es en servidor y un giro en fr; los tres corregidos.
+
+## 2026-11-24 — CI: runners fijados en ubuntu-24.04
+- GitHub pasó `ubuntu-latest` a Ubuntu 26.04 y Playwright todavía no instala Chromium ahí («Playwright does not support chromium on ubuntu26.04-x64»), así que fallaban `e2e-ai-voice` y `e2e-browsers` (solo corren en los PR). Los tres jobs usan ahora `ubuntu-24.04`.
