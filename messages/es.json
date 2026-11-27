@@ -3147,7 +3147,15 @@
     "protectNote": "Se cifra con AES de 256 bits. Guarda la contraseña: si la olvidas, nadie puede recuperarla.",
     "unlockNote": "Necesitas la contraseña: esta herramienta no adivina ni rompe contraseñas. El PDF resultante se abre sin contraseña y sin restricciones.",
     "skipSmallImages": "Ignorar imágenes pequeñas (menos de {size} px de lado)",
-    "extractImagesNote": "Las fotos guardadas como JPG se descargan tal cual, sin perder calidad; las demás imágenes se guardan como PNG (con transparencia si la tienen)."
+    "extractImagesNote": "Las fotos guardadas como JPG se descargan tal cual, sin perder calidad; las demás imágenes se guardan como PNG (con transparencia si la tienen).",
+    "pagesMode": "Qué hacer con las páginas",
+    "pagesModes": {
+      "organize": "Ordenar",
+      "rotate": "Girar",
+      "delete": "Eliminar",
+      "extract": "Extraer"
+    },
+    "pickRotateHint": "Toca las páginas que quieres girar o escribe sus números."
   },
   "SignPdf": {
     "notCertified": "Esta firma es una imagen visible sobre el PDF, como firmar a mano. No es una firma digital certificada (con certificado o token) y no reemplaza a una cuando un trámite la exige.",

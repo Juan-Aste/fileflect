@@ -4208,3 +4208,17 @@ FASE 19 TERMINADA (es la «FASE 17» de la tarea programada: calidad para Google
 - Tests: `families.test.ts`, `tests/e2e/families.spec.ts`; ajustados a los idiomas indexados `indexing.test.ts`, `seo.test.ts`, `categories.test.ts`, `guides.test.ts`, `seo-urls.spec.ts`, `conversion-content.spec.ts`, `legacy-media.spec.ts`. El CI completo (check, e2e-browsers, e2e-ai-voice) pasó sobre ae2691a. PR #17 de dev a main, para que lo mergee el dueño.
 - PLAN.md: Fase 20 partida en tareas del tamaño de una ejecución (20.2a … 20.6), con las reglas comunes, para la tarea programada «Fileflect: Fase 20».
 - Pendiente del dueño: mergear el PR #17; después, en Search Console, reenviar el sitemap.
+
+## 2026-11-27 — Fase 20, tarea 20.2a: opciones de las herramientas que se juntan (lista previa)
+- **Ordenar PDF** (`OrganizePdfTool`): miniaturas; arrastrar para reordenar; por página ← / → (mover), ↻ (girar 90°) y 🗑 (eliminar, nunca la última); «Restaurar todas»; resultado `-organized.pdf`.
+- **Rotar PDF** (`RotatePdfTool`): giro 90° derecha / 180° / 90° izquierda; todas las páginas o «Solo algunas» con rangos (placeholder «1, 3-4»); resultado `-rotated.pdf`.
+- **Eliminar páginas** (`PageSelectPdfTool` delete): selección en miniaturas (`aria-pressed`) sincronizada con rangos; «Seleccionar todas» / «Quitar la selección»; contador `role="status"`; no deja eliminar todas; resultado `-edited.pdf`.
+- **Extraer páginas** (`PageSelectPdfTool` extract): la misma selección; «Un solo PDF con esas páginas» (`-1_3.pdf`) o «Un PDF por página (ZIP)» (`-pages.zip`).
+- Las cuatro registran su propio id en las estadísticas (`trackTool`).
+
+## 2026-11-27 — Fase 20, tarea 20.2a (Ordenar, Girar, Eliminar y Extraer páginas en una herramienta)
+- `PdfPagesTool`: un componente con modos sobre las mismas miniaturas; `/ordenar-pdf`, `/rotar-pdf`, `/eliminar-paginas-pdf`, `/extraer-paginas-pdf` (y sus slugs en los otros idiomas) abren su modo; cambiar de modo no pierde el archivo ni las páginas elegidas. URLs, textos, FAQ y canonical sin cambios.
+- Todas las opciones de la lista de arriba están (comprobado también por la revisión). Nuevo: en Girar, la vista previa muestra las páginas giradas y «Solo algunas» se elige tocando miniaturas (sincronizado con el campo de rangos).
+- Textos nuevos en 5 idiomas (`PdfTools.pagesMode`, `pagesModes`, `pickRotateHint`); `toolMessages` manda además el `action` de los otros modos (`src/config/tool-modes.ts`).
+- Tests: los e2e viejos de las 4 herramientas pasan sin cambios; nuevos: cada URL abre su modo en los 5 idiomas, cambio Ordenar → Girar (`@xb`, con axe claro y oscuro), Girar eligiendo miniaturas, Eliminar → Extraer conserva la selección. `families`, `clickable`, `layout-shift`, `a11y` en Chromium pasan (salvo «axe on the login page», por el email del entorno). Capturas 1280×900 y Pixel 7, claro y oscuro, revisadas. Firefox/WebKit no se pudieron instalar acá: los corre el CI en el PR. CI verde sobre 4d5c460.
+- Revisión: OK; marcó «点按» → «点击» (zh) y una coma (en), corregidos; `docs/perf/bundle.md` nombra los componentes viejos, pero es una medición histórica y quedó como está.

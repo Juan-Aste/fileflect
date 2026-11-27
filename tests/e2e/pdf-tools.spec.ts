@@ -4,6 +4,9 @@
 import { readFileSync, statSync, writeFileSync } from "node:fs";
 import type { Page } from "@playwright/test";
 import sharp from "sharp";
+import { axeViolations } from "./axe";
+import { tools } from "../../src/config/tools";
+import { locales } from "../../src/i18n/routing";
 import {
   expect,
   fileOf,
@@ -166,6 +169,59 @@ test.describe("tool: extract-pdf-pages", () => {
     expect(entries.map((e) => e.name)).toEqual(["document-2.pdf", "document-3.pdf"]);
     const parts = await Promise.all(entries.map((e) => inspectPdf(e.data)));
     expect(parts.map((p) => p.labels)).toEqual([["2 of 3"], ["3 of 3"]]);
+  });
+});
+
+// Organize, rotate, delete and extract are one tool with modes (phase 20.2a):
+// each URL opens its mode and switching keeps the loaded file.
+const mode = (page: Page, label: string) => page.locator("label").filter({ hasText: new RegExp(`^${label}$`) }).click();
+
+test.describe("PDF pages tool: modes", () => {
+  test("each page opens its mode, in every language", async ({ page }) => {
+    test.setTimeout(180_000);
+    const modes = { "organize-pdf": "organize", "rotate-pdf": "rotate", "delete-pdf-pages": "delete", "extract-pdf-pages": "extract" } as const;
+    for (const locale of locales) {
+      for (const [id, value] of Object.entries(modes) as [keyof typeof modes, string][]) {
+        await openWithFiles(page, `/${locale}/${tools[id].slugs[locale]}`, ["document.pdf"]);
+        await expect(page.locator(`input[type=radio][value="${value}"]`), `${locale} ${id}`).toBeChecked();
+      }
+    }
+  });
+
+  test("switching from organize to rotate keeps the file", { tag: "@xb" }, async ({ page }) => {
+    await openWithFiles(page, "/es/ordenar-pdf", ["document.pdf"]);
+    await expect(page.getByRole("img", { name: /^Página \d$/ })).toHaveCount(3, { timeout: 20_000 });
+    expect(await axeViolations(page)).toEqual([]);
+    await mode(page, "Girar");
+    await choose(page, "Solo algunas");
+    await page.emulateMedia({ colorScheme: "dark" });
+    expect(await axeViolations(page)).toEqual([]);
+    await page.emulateMedia({ colorScheme: "light" });
+    await choose(page, "Todas");
+    await choose(page, "180°");
+    const out = fileOf(await runTool(page, "Rotar PDF"));
+    expect(out.name).toBe("document-rotated.pdf");
+    expect((await inspectPdf(out.buf)).rotations).toEqual([180, 180, 180]);
+  });
+
+  test("rotate: pages picked on their thumbnails", async ({ page }) => {
+    await openWithFiles(page, "/es/rotar-pdf", ["document.pdf"]);
+    await choose(page, "Solo algunas");
+    await choose(page, "90° a la izquierda");
+    await thumb(page, 3).click();
+    await expect(pagesBox(page)).toHaveValue("3");
+    expect((await pdfOf(page, "Rotar PDF")).rotations).toEqual([0, 0, 270]);
+  });
+
+  test("the pages picked to delete stay picked when switching to extract", async ({ page }) => {
+    await openWithFiles(page, "/es/eliminar-paginas-pdf", ["document.pdf"]);
+    await thumb(page, 2).click();
+    await mode(page, "Extraer");
+    await expect(thumb(page, 2)).toHaveAttribute("aria-pressed", "true");
+    await expect(page.getByText("Se extraerá 1 página de 3.")).toBeVisible();
+    const out = fileOf(await runTool(page, "Extraer páginas"));
+    expect(out.name).toBe("document-2.pdf");
+    expect((await inspectPdf(out.buf)).labels).toEqual(["2 of 3"]);
   });
 });
 

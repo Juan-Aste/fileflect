@@ -32,6 +32,14 @@ describe("client messages", () => {
     expect(m.PdfTools).toEqual(es.PdfTools);
   });
 
+  it("give a mode of a unified tool the other modes' button texts, and nothing else of theirs", () => {
+    const m = toolMessages(es, "rotate-pdf") as { Tools: Record<string, unknown> };
+    expect(m.Tools["rotate-pdf"]).toEqual(es.Tools["rotate-pdf"]);
+    for (const id of ["organize-pdf", "delete-pdf-pages", "extract-pdf-pages"] as const) {
+      expect(m.Tools[id]).toEqual({ action: es.Tools[id].action });
+    }
+  });
+
   it("every tool-only namespace exists and only tool components (src/components/tools) read it", () => {
     for (const ns of TOOL_ONLY) expect(es, ns).toHaveProperty(ns);
     const offenders = sources("src")

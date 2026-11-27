@@ -3147,7 +3147,15 @@
     "protectNote": "Encrypted with 256-bit AES. Keep the password safe: if you forget it, nobody can recover it.",
     "unlockNote": "You need the password: this tool doesn’t guess or crack passwords. The resulting PDF opens without a password or restrictions.",
     "skipSmallImages": "Skip small images (under {size} px on a side)",
-    "extractImagesNote": "Photos stored as JPG are downloaded as they are, with no quality loss; other images are saved as PNG (with transparency if they have it)."
+    "extractImagesNote": "Photos stored as JPG are downloaded as they are, with no quality loss; other images are saved as PNG (with transparency if they have it).",
+    "pagesMode": "What to do with the pages",
+    "pagesModes": {
+      "organize": "Organize",
+      "rotate": "Rotate",
+      "delete": "Delete",
+      "extract": "Extract"
+    },
+    "pickRotateHint": "Tap the pages you want to rotate, or type their numbers."
   },
   "SignPdf": {
     "notCertified": "This signature is a visible image on the PDF, like signing by hand. It is not a certified digital signature (with a certificate or token) and doesn't replace one when a process requires it.",

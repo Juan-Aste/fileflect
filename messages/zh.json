@@ -3147,7 +3147,15 @@
     "protectNote": "使用 256 位 AES 加密。请妥善保管密码：一旦忘记，任何人都无法找回。",
     "unlockNote": "需要知道密码：本工具不会猜测或破解密码。生成的 PDF 无需密码即可打开，也没有限制。",
     "skipSmallImages": "忽略小图片（边长小于 {size} 像素）",
-    "extractImagesNote": "以 JPG 存储的照片按原样下载，不损失画质；其他图片保存为 PNG（如有透明度则保留）。"
+    "extractImagesNote": "以 JPG 存储的照片按原样下载，不损失画质；其他图片保存为 PNG（如有透明度则保留）。",
+    "pagesMode": "页面操作",
+    "pagesModes": {
+      "organize": "整理",
+      "rotate": "旋转",
+      "delete": "删除",
+      "extract": "提取"
+    },
+    "pickRotateHint": "点击要旋转的页面，或输入页码。"
   },
   "SignPdf": {
     "notCertified": "此签名是放在 PDF 上的可见图像，相当于手写签名。它不是经过认证的数字签名（需要证书或密钥），在流程要求数字签名时不能代替。",
