@@ -9,7 +9,7 @@ import { readFileSync } from "node:fs";
 import type { APIRequestContext } from "@playwright/test";
 import { categorySlug, publishedCategories } from "../../src/config/categories";
 import { conversionPages, conversionSlug } from "../../src/config/conversion-pages";
-import { isIndexedCategory, isIndexedConversion, isIndexedTool } from "../../src/config/indexing";
+import { isIndexedCategory, isIndexedConversion, isIndexedLocale, isIndexedTool } from "../../src/config/indexing";
 import { availableTools, tools } from "../../src/config/tools";
 import type { Locale } from "../../src/i18n/routing";
 import { expect, test } from "./support";
@@ -125,10 +125,11 @@ test.describe("Search Console URLs", () => {
     // out of the sitemap. Rules in src/config/indexing.ts.
     const xml = await (await request.get("/sitemap.xml")).text();
     const inSitemap = new Set([...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => toPath(m[1])));
+    // French and Chinese pages are all noindex (phase 20.5a).
     const pages = (locales as Locale[]).flatMap((locale) => [
-      ...conversionPages.map((c) => ({ path: `/${locale}/${conversionSlug(c, locale)}`, indexed: isIndexedConversion(c) })),
-      ...availableTools.map((id) => ({ path: `/${locale}/${tools[id].slugs[locale]}`, indexed: isIndexedTool(id) })),
-      ...publishedCategories.map((c) => ({ path: `/${locale}/${categorySlug(c, locale)}`, indexed: isIndexedCategory(c) })),
+      ...conversionPages.map((c) => ({ path: `/${locale}/${conversionSlug(c, locale)}`, indexed: isIndexedLocale(locale) && isIndexedConversion(c) })),
+      ...availableTools.map((id) => ({ path: `/${locale}/${tools[id].slugs[locale]}`, indexed: isIndexedLocale(locale) && isIndexedTool(id) })),
+      ...publishedCategories.map((c) => ({ path: `/${locale}/${categorySlug(c, locale)}`, indexed: isIndexedLocale(locale) && isIndexedCategory(c) })),
     ]);
     // A tool page and a conversion page never share a URL, so each path is checked once.
     const unique = [...new Map(pages.map((p) => [p.path, p])).values()];

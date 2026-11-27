@@ -2581,6 +2581,90 @@
         "name": "CAO",
         "description": "Affichez et convertissez des plans CAO."
       }
+    },
+    "familyNav": "Outils associés : {family}",
+    "families": {
+      "pdf-pages": {
+        "name": "Fusionner, diviser et organiser les pages"
+      },
+      "pdf-edit": {
+        "name": "Modifier et signer"
+      },
+      "pdf-optimize": {
+        "name": "Compresser et protéger"
+      },
+      "pdf-convert": {
+        "name": "Convertir depuis un PDF"
+      },
+      "pdf-create": {
+        "name": "Créer un PDF"
+      },
+      "image-edit": {
+        "name": "Modifier des images"
+      },
+      "image-photo": {
+        "name": "Photos"
+      },
+      "image-optimize": {
+        "name": "Compresser et préparer"
+      },
+      "document-markup": {
+        "name": "Markdown et HTML"
+      },
+      "document-sheets": {
+        "name": "Feuilles de calcul"
+      },
+      "data-convert": {
+        "name": "Convertir des données"
+      },
+      "developer-format": {
+        "name": "Formater"
+      },
+      "developer-encode": {
+        "name": "Encodage et hachage"
+      },
+      "developer-generate": {
+        "name": "Identifiants et dates"
+      },
+      "utility-text": {
+        "name": "Texte"
+      },
+      "utility-qr": {
+        "name": "Codes QR"
+      },
+      "utility-other": {
+        "name": "Mots de passe, couleurs et unités"
+      },
+      "subtitle": {
+        "name": "Sous-titres"
+      },
+      "font": {
+        "name": "Polices"
+      },
+      "archive": {
+        "name": "Archives"
+      },
+      "ocr": {
+        "name": "Reconnaissance de texte (OCR)"
+      },
+      "ebook": {
+        "name": "Livres numériques"
+      },
+      "audio-edit": {
+        "name": "Convertir et modifier l’audio"
+      },
+      "audio-speech": {
+        "name": "Voix et texte"
+      },
+      "video": {
+        "name": "Convertir et modifier la vidéo"
+      },
+      "3d": {
+        "name": "Modèles 3D"
+      },
+      "cad": {
+        "name": "CAO"
+      }
     }
   },
   "Search": {

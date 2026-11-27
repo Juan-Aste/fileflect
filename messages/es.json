@@ -2581,6 +2581,90 @@
         "name": "CAD",
         "description": "Visualiza y convierte planos CAD."
       }
+    },
+    "familyNav": "Herramientas relacionadas: {family}",
+    "families": {
+      "pdf-pages": {
+        "name": "Unir, dividir y ordenar páginas"
+      },
+      "pdf-edit": {
+        "name": "Editar y firmar"
+      },
+      "pdf-optimize": {
+        "name": "Comprimir y proteger"
+      },
+      "pdf-convert": {
+        "name": "Convertir desde PDF"
+      },
+      "pdf-create": {
+        "name": "Crear PDF"
+      },
+      "image-edit": {
+        "name": "Editar imágenes"
+      },
+      "image-photo": {
+        "name": "Fotos"
+      },
+      "image-optimize": {
+        "name": "Comprimir y preparar"
+      },
+      "document-markup": {
+        "name": "Markdown y HTML"
+      },
+      "document-sheets": {
+        "name": "Hojas de cálculo"
+      },
+      "data-convert": {
+        "name": "Convertir datos"
+      },
+      "developer-format": {
+        "name": "Formatear"
+      },
+      "developer-encode": {
+        "name": "Codificar y hashes"
+      },
+      "developer-generate": {
+        "name": "Identificadores y fechas"
+      },
+      "utility-text": {
+        "name": "Texto"
+      },
+      "utility-qr": {
+        "name": "Códigos QR"
+      },
+      "utility-other": {
+        "name": "Contraseñas, colores y unidades"
+      },
+      "subtitle": {
+        "name": "Subtítulos"
+      },
+      "font": {
+        "name": "Fuentes"
+      },
+      "archive": {
+        "name": "Archivos comprimidos"
+      },
+      "ocr": {
+        "name": "Reconocer texto (OCR)"
+      },
+      "ebook": {
+        "name": "Libros electrónicos"
+      },
+      "audio-edit": {
+        "name": "Convertir y editar audio"
+      },
+      "audio-speech": {
+        "name": "Voz y texto"
+      },
+      "video": {
+        "name": "Convertir y editar video"
+      },
+      "3d": {
+        "name": "Modelos 3D"
+      },
+      "cad": {
+        "name": "CAD"
+      }
     }
   },
   "Search": {

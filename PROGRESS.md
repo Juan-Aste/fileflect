@@ -4199,3 +4199,12 @@ FASE 19 TERMINADA (es la «FASE 17» de la tarea programada: calidad para Google
 
 ## 2026-11-24 — CI: runners fijados en ubuntu-24.04
 - GitHub pasó `ubuntu-latest` a Ubuntu 26.04 y Playwright todavía no instala Chromium ahí («Playwright does not support chromium on ubuntu26.04-x64»), así que fallaban `e2e-ai-voice` y `e2e-browsers` (solo corren en los PR). Los tres jobs usan ahora `ubuntu-24.04`.
+
+## 2026-11-27 — Fase 20: familias (20.1), fr/zh fuera del índice (20.5a) y plan para la tarea programada
+- Pedido del dueño: ordenar las herramientas «desperdigadas» y sin vista previa después de la caída de impresiones de noviembre. Criterio aprobado: unificar herramientas sin borrar URLs que se buscan.
+- **20.1**: `src/config/families.ts` (27 familias; cada herramienta publicada en una sola de su categoría). `FamilyNav` muestra las hermanas como pestañas arriba de cada herramienta; en el celular van en filas porque el desplazamiento lateral dejaba pestañas cortadas que el detector de clics marcaba como objetivos chicos. Las páginas de categoría y «Todas las herramientas» listan por familia.
+- **20.5a** (decisión del dueño): solo es, en y pt se indexan. fr y zh siguen funcionando con `noindex, follow`, fuera del sitemap y de los `hreflang` (`indexedLocales`, `docs/seo/indexacion.md`).
+- Datos de Search Console del 27/11 en `docs/seo/gsc-2026-11-27/`. **20.5c**: duplicados sin 301 (los números en PLAN.md).
+- Tests: `families.test.ts`, `tests/e2e/families.spec.ts`; ajustados a los idiomas indexados `indexing.test.ts`, `seo.test.ts`, `categories.test.ts`, `guides.test.ts`, `seo-urls.spec.ts`, `conversion-content.spec.ts`, `legacy-media.spec.ts`. El CI completo (check, e2e-browsers, e2e-ai-voice) pasó sobre ae2691a. PR #17 de dev a main, para que lo mergee el dueño.
+- PLAN.md: Fase 20 partida en tareas del tamaño de una ejecución (20.2a … 20.6), con las reglas comunes, para la tarea programada «Fileflect: Fase 20».
+- Pendiente del dueño: mergear el PR #17; después, en Search Console, reenviar el sitemap.

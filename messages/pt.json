@@ -2581,6 +2581,90 @@
         "name": "CAD",
         "description": "Visualize e converta desenhos CAD."
       }
+    },
+    "familyNav": "Ferramentas relacionadas: {family}",
+    "families": {
+      "pdf-pages": {
+        "name": "Juntar, dividir e organizar páginas"
+      },
+      "pdf-edit": {
+        "name": "Editar e assinar"
+      },
+      "pdf-optimize": {
+        "name": "Comprimir e proteger"
+      },
+      "pdf-convert": {
+        "name": "Converter de PDF"
+      },
+      "pdf-create": {
+        "name": "Criar PDF"
+      },
+      "image-edit": {
+        "name": "Editar imagens"
+      },
+      "image-photo": {
+        "name": "Fotos"
+      },
+      "image-optimize": {
+        "name": "Comprimir e preparar"
+      },
+      "document-markup": {
+        "name": "Markdown e HTML"
+      },
+      "document-sheets": {
+        "name": "Planilhas"
+      },
+      "data-convert": {
+        "name": "Converter dados"
+      },
+      "developer-format": {
+        "name": "Formatar"
+      },
+      "developer-encode": {
+        "name": "Codificação e hashes"
+      },
+      "developer-generate": {
+        "name": "IDs e datas"
+      },
+      "utility-text": {
+        "name": "Texto"
+      },
+      "utility-qr": {
+        "name": "Códigos QR"
+      },
+      "utility-other": {
+        "name": "Senhas, cores e unidades"
+      },
+      "subtitle": {
+        "name": "Legendas"
+      },
+      "font": {
+        "name": "Fontes"
+      },
+      "archive": {
+        "name": "Arquivos compactados"
+      },
+      "ocr": {
+        "name": "Reconhecer texto (OCR)"
+      },
+      "ebook": {
+        "name": "E-books"
+      },
+      "audio-edit": {
+        "name": "Converter e editar áudio"
+      },
+      "audio-speech": {
+        "name": "Voz e texto"
+      },
+      "video": {
+        "name": "Converter e editar vídeo"
+      },
+      "3d": {
+        "name": "Modelos 3D"
+      },
+      "cad": {
+        "name": "CAD"
+      }
     }
   },
   "Search": {

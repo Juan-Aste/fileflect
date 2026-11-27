@@ -43,3 +43,12 @@ En los 5 idiomas: 69 páginas menos en el sitemap por idioma (345 en total). El 
 
 - Para indexar una conversión más: agregar el par a `indexedConversionPairs` **y** escribirle su texto propio (fase 19.2b).
 - Una página que pasa a `noindex` no cambia de URL: sigue respondiendo 200 y enlazada desde el sitio (por eso `follow`).
+
+## Idiomas fuera del índice (fase 20.5a, 2026-11-27)
+
+Decisión del dueño con los datos de Search Console del 2026-11-27: en el período, francés y chino trajeron **2 de 83 clics** (1390 de 6417 impresiones), y de las 350 páginas «Rastreada: actualmente sin indexar», 168 eran `fr` o `zh` (115 de ellas `zh`). El público es Latinoamérica.
+
+- Solo se indexan **es, en y pt** (`indexedLocales` en `src/config/indexing.ts`).
+- Las páginas en `fr` y `zh` siguen funcionando y enlazadas desde el selector de idioma, con `noindex, follow` (desde `app/[locale]/layout.tsx`), fuera del sitemap y fuera de todos los `hreflang` (también los de las páginas en es/en/pt).
+- Las guías nuevas se siguen escribiendo en los 5 idiomas; las versiones `fr` y `zh` quedan fuera del sitemap solas.
+- Para volver a indexar un idioma: agregarlo a `indexedLocales`. Los tests (`indexing.test.ts`, `seo-urls.spec.ts`) se adaptan solos.

@@ -12,14 +12,17 @@ describe("alternatesFor", () => {
 describe("sitemapEntries", () => {
   const entries = sitemapEntries("https://fileflip.app");
 
-  it("includes home, tools and conversion pages in every language", () => {
+  it("includes home, tools and conversion pages in every indexed language", () => {
     const urls = entries.map((e) => e.url);
     expect(urls).toContain("https://fileflip.app/es");
-    expect(urls).toContain("https://fileflip.app/zh");
+    expect(urls).toContain("https://fileflip.app/pt");
     expect(urls).toContain("https://fileflip.app/es/unir-pdf");
-    expect(urls).toContain("https://fileflip.app/fr/heic-en-jpg");
+    expect(urls).toContain("https://fileflip.app/en/heic-to-jpg");
     expect(urls).toContain("https://fileflip.app/es/creditos");
-    expect(urls).toContain("https://fileflip.app/zh/credits");
+    expect(urls).toContain("https://fileflip.app/en/credits");
+    // French and Chinese are out of the index (phase 20.5a).
+    expect(urls).not.toContain("https://fileflip.app/zh");
+    expect(urls).not.toContain("https://fileflip.app/fr/heic-en-jpg");
     expect(new Set(urls).size).toBe(urls.length);
   });
 

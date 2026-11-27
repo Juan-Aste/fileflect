@@ -645,3 +645,38 @@ Calidad para Google y AdSense (pedido del dueño el 2026-11-07; en la tarea prog
 
 ### 19.5 (pedida como 17.5) Verificación final
 - [x] 19.5 (hecha 2026-11-08: `docs/perf/2026-11-08-phase19.md`, `docs/launch-checklist.md` §9a) Lighthouse, detector de clics, axe, Firefox y WebKit de las páginas tocadas, suite de Chromium, test de URLs de Search Console, y `docs/launch-checklist.md` con los pasos del dueño en Search Console después del merge. «FASE 19 TERMINADA».
+
+## Fase 20
+
+Ordenar las herramientas (pedido del dueño el 2026-11-27): eran ~110 páginas de herramienta sueltas, muchas sin vista previa. Las impresiones cayeron de ~300 por día a 0–3 desde el 12–13/11 (core update de noviembre y, quizá, el `noindex` de la fase 19.2; ver `docs/seo/gsc-2026-11-27/README.md`). Criterio aprobado por el dueño: **unificar la herramienta (interfaz y motor) sin borrar URLs que se buscan**. Cada URL actual sigue respondiendo 200 con su título, textos, FAQ y canonical propios, y abre la herramienta unificada en el modo que le corresponde. Sin cambiar slugs, sin 301 nuevos y sin tocar la indexación (`docs/seo/indexacion.md`), salvo lo que diga una tarea. En orden; cada tarea entra en una ejecución de la tarea programada (si no entra, partirla en a/b y anotarlo).
+
+Reglas para todas las tareas de la fase:
+- Una herramienta unificada es **un componente con modos**; la página de cada URL le pasa el modo inicial (prop o `ToolBlock` con modo) y el usuario puede cambiar de modo sin perder el archivo cargado. Los modos son los de la familia (`src/config/families.ts`) cuando tiene sentido.
+- No se pierde ninguna función ni opción que hoy tenga una herramienta. Antes de unificar, listar en PROGRESS.md las opciones de cada herramienta que se junta y comprobar al final que están todas.
+- Los tests e2e existentes de cada herramienta siguen pasando sin cambiar lo que comprueban (se pueden ajustar selectores si cambió la interfaz, nunca el archivo de salida que se espera). Cada modo nuevo lleva su test con el archivo de salida.
+- «Vista previa» = lo que el usuario ve del archivo **antes de descargar**: miniaturas de páginas (PDF), la imagen (antes/después si cambia), un reproductor (audio y video) o el texto/tabla del resultado (datos y texto). Sin cargar librerías pesadas antes de que el usuario elija un archivo; Lighthouse móvil sin bajar del rango del sitio.
+- 5 idiomas para todo texto nuevo; axe, detector de clics y CLS en cada pantalla tocada; Firefox y WebKit (`@xb`) en al menos un test por herramienta tocada.
+
+- [x] 20.1 (hecha 2026-11-27: `src/config/families.ts` con 27 familias, `FamilyNav` arriba de cada herramienta, catálogo agrupado por familia; `families.test.ts` y `tests/e2e/families.spec.ts`; CI completo en verde sobre ae2691a) Familias de herramientas: pestañas con las herramientas hermanas en cada página de herramienta y catálogo agrupado.
+- [x] 20.5a (hecha 2026-11-27, decisión del dueño: `indexedLocales` = es, en, pt en `src/config/indexing.ts`; fr y zh con `noindex, follow`, fuera del sitemap y de los `hreflang`; `docs/seo/indexacion.md`) Francés y chino fuera del índice.
+
+### 20.2 PDF: una sola pantalla de páginas
+- [ ] 20.2a «Organizar PDF» con modos: Ordenar (actual), Girar, Eliminar páginas y Extraer páginas, sobre la misma grilla de miniaturas (`OrganizePdfTool`, `usePdfThumbnails`). Girar conserva todas las opciones de `RotatePdfTool` (todas las páginas o algunas, 90/180/270); Eliminar y Extraer conservan las de `PageSelectPdfTool` (selección en miniaturas y por rangos; extraer a un PDF o cada página en su PDF). `/rotar-pdf`, `/eliminar-paginas-pdf`, `/extraer-paginas-pdf` y `/ordenar-pdf` (y sus slugs en los otros idiomas) abren el modo correspondiente. Los componentes viejos se borran solo cuando sus tests pasan contra el nuevo.
+- [ ] 20.2b «Dividir PDF» y «Unir PDF» con miniaturas: Dividir muestra las páginas y dónde corta cada parte; Unir muestra la primera página de cada archivo y permite reordenar los archivos arrastrando y con teclado.
+
+### 20.3 Vista previa donde falta
+- [ ] 20.3a PDF: miniaturas del archivo cargado (y del resultado si cambia su aspecto) en Comprimir PDF (con el peso antes y después), Proteger/Quitar contraseña, Marca de agua y Numerar páginas (vista previa en vivo de la primera página con la marca o el número), PDF/A, PDF → texto (el texto extraído antes de descargar), PDF → PowerPoint y Extraer imágenes (grilla de las imágenes encontradas).
+- [ ] 20.3b Imagen: antes/después (`BeforeAfter`) en Comprimir imagen (con peso y calidad), Redimensionar y Girar imagen; en Quitar EXIF, la lista de metadatos que se van a borrar.
+- [ ] 20.3c Audio y video: reproductor del original y del resultado en Convertir/Ajustar/Normalizar/Unir audio y en Convertir/Comprimir/Recortar/Velocidad/Unir video, Extraer audio y Video → GIF (el GIF como imagen).
+- [ ] 20.3d Datos, texto y otros: vista previa del resultado antes de descargar en los conversores de datos, hojas de cálculo (primeras filas en tabla), formateadores, Markdown/HTML, subtítulos, EPUB y ZIP (lista de archivos).
+
+### 20.4 Conversores con «de» y «a»
+- [ ] 20.4a Datos: JSON, CSV, YAML, TOML y XML en una sola interfaz con selectores «de» y «a» (y botón para invertir); cada URL actual abre su par.
+- [ ] 20.4b Hojas de cálculo: el conversor de hojas de cálculo absorbe Excel ↔ CSV/JSON/ODS y XLS → XLSX como pares preseleccionados por URL; Unir y Separar hojas quedan como modos.
+
+### 20.5 Búsqueda
+- [ ] 20.5b Volver a indexar las conversiones que trajeron clics aunque estaban en `noindex` (fase 19.2): CSV → PDF, GIF → PDF y ODP → PDF, cada una con su texto propio en 5 idiomas como las 38 de `src/content/conversions/` (regla de 19.2b), agregadas a `indexedConversionPairs` y a `docs/seo/indexacion.md`.
+- [x] 20.5c (decidida 2026-11-27 con `docs/seo/gsc-2026-11-27/rendimiento-paginas.csv`) Duplicados: **no se redirige nada**. En es/en/pt, XLS → PDF tuvo 1 clic y 27 impresiones, PNG → PDF 72 impresiones contra 16 de Imágenes → PDF, PPT → PDF 7 y DOC → PDF 6; Word → PDF y JPG → PDF tuvieron 0, lo que muestra posición y no falta de demanda. Las páginas siguen como están; la unificación de 20.2–20.4 es de interfaz.
+
+### 20.6 Verificación final
+- [ ] 20.6 CI completo en verde, axe, detector de clics y CLS en todas las pantallas tocadas, Lighthouse móvil de 5 herramientas unificadas sin bajar del rango del sitio, resumen en PROGRESS.md y «FASE 20 TERMINADA».
