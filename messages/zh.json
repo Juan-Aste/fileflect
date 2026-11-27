@@ -2581,6 +2581,90 @@
         "name": "CAD",
         "description": "查看和转换 CAD 图纸。"
       }
+    },
+    "familyNav": "相关工具：{family}",
+    "families": {
+      "pdf-pages": {
+        "name": "合并、拆分和整理页面"
+      },
+      "pdf-edit": {
+        "name": "编辑和签名"
+      },
+      "pdf-optimize": {
+        "name": "压缩和保护"
+      },
+      "pdf-convert": {
+        "name": "从 PDF 转换"
+      },
+      "pdf-create": {
+        "name": "创建 PDF"
+      },
+      "image-edit": {
+        "name": "编辑图片"
+      },
+      "image-photo": {
+        "name": "照片"
+      },
+      "image-optimize": {
+        "name": "压缩和处理"
+      },
+      "document-markup": {
+        "name": "Markdown 和 HTML"
+      },
+      "document-sheets": {
+        "name": "电子表格"
+      },
+      "data-convert": {
+        "name": "转换数据"
+      },
+      "developer-format": {
+        "name": "格式化"
+      },
+      "developer-encode": {
+        "name": "编码和哈希"
+      },
+      "developer-generate": {
+        "name": "ID 和时间戳"
+      },
+      "utility-text": {
+        "name": "文本"
+      },
+      "utility-qr": {
+        "name": "二维码"
+      },
+      "utility-other": {
+        "name": "密码、颜色和单位"
+      },
+      "subtitle": {
+        "name": "字幕"
+      },
+      "font": {
+        "name": "字体"
+      },
+      "archive": {
+        "name": "压缩文件"
+      },
+      "ocr": {
+        "name": "文字识别 (OCR)"
+      },
+      "ebook": {
+        "name": "电子书"
+      },
+      "audio-edit": {
+        "name": "转换和编辑音频"
+      },
+      "audio-speech": {
+        "name": "语音和文字"
+      },
+      "video": {
+        "name": "转换和编辑视频"
+      },
+      "3d": {
+        "name": "3D 模型"
+      },
+      "cad": {
+        "name": "CAD"
+      }
     }
   },
   "Search": {

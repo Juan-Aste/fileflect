@@ -2581,6 +2581,90 @@
         "name": "CAD",
         "description": "View and convert CAD drawings."
       }
+    },
+    "familyNav": "Related tools: {family}",
+    "families": {
+      "pdf-pages": {
+        "name": "Merge, split and organize pages"
+      },
+      "pdf-edit": {
+        "name": "Edit and sign"
+      },
+      "pdf-optimize": {
+        "name": "Compress and protect"
+      },
+      "pdf-convert": {
+        "name": "Convert from PDF"
+      },
+      "pdf-create": {
+        "name": "Create a PDF"
+      },
+      "image-edit": {
+        "name": "Edit images"
+      },
+      "image-photo": {
+        "name": "Photos"
+      },
+      "image-optimize": {
+        "name": "Compress and prepare"
+      },
+      "document-markup": {
+        "name": "Markdown and HTML"
+      },
+      "document-sheets": {
+        "name": "Spreadsheets"
+      },
+      "data-convert": {
+        "name": "Convert data"
+      },
+      "developer-format": {
+        "name": "Format"
+      },
+      "developer-encode": {
+        "name": "Encoding and hashes"
+      },
+      "developer-generate": {
+        "name": "IDs and timestamps"
+      },
+      "utility-text": {
+        "name": "Text"
+      },
+      "utility-qr": {
+        "name": "QR codes"
+      },
+      "utility-other": {
+        "name": "Passwords, colors and units"
+      },
+      "subtitle": {
+        "name": "Subtitles"
+      },
+      "font": {
+        "name": "Fonts"
+      },
+      "archive": {
+        "name": "Archives"
+      },
+      "ocr": {
+        "name": "Text recognition (OCR)"
+      },
+      "ebook": {
+        "name": "eBooks"
+      },
+      "audio-edit": {
+        "name": "Convert and edit audio"
+      },
+      "audio-speech": {
+        "name": "Speech and text"
+      },
+      "video": {
+        "name": "Convert and edit video"
+      },
+      "3d": {
+        "name": "3D models"
+      },
+      "cad": {
+        "name": "CAD"
+      }
     }
   },
   "Search": {

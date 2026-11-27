@@ -1,3 +1,4 @@
+import FamilyNav from "@/components/catalog/FamilyNav";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
@@ -281,6 +282,7 @@ async function ToolView({ tool }: { tool: ToolInfo }) {
           <p className="max-w-xl text-lg text-muted text-pretty">{t("description")}</p>
           <ProcessingBadge engine={tool.engine} />
         </PageHero>
+        <FamilyNav current={tool.id} />
         <ToolBlock id={tool.id} />
       </div>
 

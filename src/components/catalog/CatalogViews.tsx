@@ -7,6 +7,7 @@ import PillLink from "@/components/ui/PillLink";
 import { card } from "@/components/ui/styles";
 import { allToolsSlugs, categoryEntries, categorySlug, publishedCategories } from "@/config/categories";
 import { conversionSlug } from "@/config/conversion-pages";
+import { familiesInCategory } from "@/config/families";
 import { formats, type Conversion, type FormatId } from "@/config/formats";
 import type { ToolCategory, ToolInfo } from "@/config/tools";
 import { Link } from "@/i18n/navigation";
@@ -72,6 +73,25 @@ async function ToolCards({ items }: { items: ToolInfo[] }) {
   );
 }
 
+/** A category's tools, family by family (phase 20.1); one family needs no headings. */
+async function FamilyGroups({ category }: { category: ToolCategory }) {
+  const t = await getTranslations("Catalog");
+  const families = familiesInCategory(category);
+  if (families.length === 1) return <ToolCards items={families[0]!.tools} />;
+  return (
+    <div className="flex flex-col gap-6">
+      {families.map((family) => (
+        <section key={family.id} aria-labelledby={`family-${family.id}`} className="flex flex-col gap-3">
+          <h3 id={`family-${family.id}`} className="text-lg font-semibold">
+            {t(`families.${family.id}.name`)}
+          </h3>
+          <ToolCards items={family.tools} />
+        </section>
+      ))}
+    </div>
+  );
+}
+
 /** Conversion pages grouped by input format. */
 async function ConversionGroups({ conversions }: { conversions: Conversion[] }) {
   const t = await getTranslations("Catalog");
@@ -125,7 +145,7 @@ export async function CategoryView({ category }: { category: ToolCategory }) {
           <h2 id="tools-heading" className="text-2xl font-bold">
             {t("toolsHeading")}
           </h2>
-          <ToolCards items={tools} />
+          <FamilyGroups category={category} />
         </section>
       )}
       {conversions.length > 0 && (
@@ -168,7 +188,7 @@ export async function AllToolsView() {
                   .join(" · ")}
               </span>
             </div>
-            {tools.length > 0 && <ToolCards items={tools} />}
+            {tools.length > 0 && <FamilyGroups category={category} />}
             <div>
               <PillLink href={`/${categorySlug(category, locale)}`}>{t("seeCategory", { category: name })}</PillLink>
             </div>
