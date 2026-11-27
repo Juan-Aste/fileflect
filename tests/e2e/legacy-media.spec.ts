@@ -156,9 +156,11 @@ test.describe("old formats (FFmpeg WASM fallback)", () => {
     const input = make("viejo.avi", "video.mp4", ["-c:v", "mpeg4", "-q:v", "3", "-c:a", "libmp3lame", "-f", "avi"]);
     await page.goto("/es/avi-a-mp4", { waitUntil: "networkidle" });
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Convertir AVI a MP4");
-    for (const [lang, path] of [["en", "/en/avi-to-mp4"], ["pt", "/pt/avi-para-mp4"], ["fr", "/fr/avi-en-mp4"], ["zh", "/zh/avi-to-mp4"]]) {
+    for (const [lang, path] of [["en", "/en/avi-to-mp4"], ["pt", "/pt/avi-para-mp4"]]) {
       await expect(page.locator(`link[rel="alternate"][hreflang="${lang}"]`)).toHaveAttribute("href", new RegExp(`${path}$`));
     }
+    // French and Chinese are out of the index and out of hreflang (phase 20.5a).
+    for (const lang of ["fr", "zh"]) await expect(page.locator(`link[rel="alternate"][hreflang="${lang}"]`)).toHaveCount(0);
     await page.locator('input[type="file"]').first().setInputFiles(input);
     const out = fileOf(await runTool(page, "Convertir video"));
     expect(out.name).toBe("viejo.mp4");

@@ -1,3 +1,4 @@
+import { isIndexedLocale, noindexFollow } from "@/config/indexing";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -37,6 +38,8 @@ export async function generateMetadata({
     title: t("title"),
     description: t("description"),
     twitter: { card: "summary_large_image" },
+    // Languages out of the index (config/indexing.ts): pages set their own robots only to say the same or stricter.
+    ...(isIndexedLocale(locale) ? {} : { robots: noindexFollow }),
   };
 }
 

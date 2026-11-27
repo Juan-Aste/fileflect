@@ -1,3 +1,4 @@
+import { isIndexedLocale } from "@/config/indexing";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
@@ -30,7 +31,7 @@ describe("guides section", () => {
 
   it("lists every guide and index in the sitemap with its last update", () => {
     const entries = sitemapEntries("https://x.test");
-    for (const l of guideLocales) {
+    for (const l of guideLocales.filter(isIndexedLocale)) {
       const index = entries.find((e) => e.url === `https://x.test/${l}/${guidesSlugs[l]}`);
       expect(index?.lastModified).toBe(guidesFor(l).map((g) => g.updated).sort().at(-1));
       for (const g of guidesFor(l)) expect(entries.find((e) => e.url === `https://x.test/${l}${guidePath(g, l)}`)?.lastModified).toBe(g.updated);
@@ -105,7 +106,9 @@ describe.each(guides)("guide $id", (guide) => {
   it("is in the sitemap and the language switcher in each language", () => {
     const urls = sitemapEntries("https://x.test").map((e) => e.url);
     for (const l of published) {
-      expect(urls).toContain(`https://x.test/${l}${guidePath(guide, l)}`);
+      // French and Chinese work but are out of the index (phase 20.5a).
+      if (isIndexedLocale(l)) expect(urls).toContain(`https://x.test/${l}${guidePath(guide, l)}`);
+      else expect(urls).not.toContain(`https://x.test/${l}${guidePath(guide, l)}`);
       for (const to of locales) {
         const translated = translatePathname(guidePath(guide, l)!, l, to);
         expect(translated).toBe(guidePath(guide, to) ?? (guideLocales.includes(to) ? `/${guidesSlugs[to]}` : "/"));

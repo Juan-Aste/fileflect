@@ -1,6 +1,24 @@
 import { categoryEntries } from "./categories";
 import type { Conversion, FormatId } from "./formats";
 import type { ToolCategory, ToolId } from "./tools";
+import { locales, type Locale } from "@/i18n/routing";
+
+/**
+ * Languages Google should index (phase 20.5a, decided by the owner on
+ * 2026-11-27). Search Console showed French and Chinese bringing 2 of 83
+ * clicks while making up a third of the "crawled, not indexed" pages; the
+ * audience is Latin America. Pages in the other languages keep working and
+ * linked (language switcher) but say `noindex, follow`, stay out of the
+ * sitemap and out of every hreflang set.
+ */
+export const indexedLocales: readonly Locale[] = ["es", "en", "pt"];
+
+export function isIndexedLocale(locale: string): boolean {
+  return (indexedLocales as readonly string[]).includes(locale);
+}
+
+/** The languages that go in hreflang sets and the sitemap, in routing order. */
+export const hreflangLocales: readonly Locale[] = locales.filter(isIndexedLocale);
 
 // Which template pages Google should index (phase 19.2, docs/seo/indexacion.md).
 // AdSense rejected the site on 2026-11-07 for "low value content": ~200 pages

@@ -28,7 +28,7 @@ import {
   relatedConversions,
 } from "@/config/conversion-pages";
 import { creditsSlugs } from "@/config/credits";
-import { isIndexedCategory, isIndexedConversion, isIndexedTool, noindexFollow } from "@/config/indexing";
+import { hreflangLocales, isIndexedCategory, isIndexedConversion, isIndexedLocale, isIndexedTool, noindexFollow } from "@/config/indexing";
 import { formats, type Conversion } from "@/config/formats";
 import {
   availableTools,
@@ -127,7 +127,7 @@ export async function generateMetadata({
   if (!page) return {};
   if (page.kind === "longtail") {
     const lt = page.page;
-    const versions = routing.locales.flatMap((l) => {
+    const versions = hreflangLocales.flatMap((l) => {
       const t = longtailTranslation(lt, l);
       return t ? [[l, `/${l}/${t.slug}`] as const] : [];
     });
@@ -147,7 +147,7 @@ export async function generateMetadata({
   if (page.kind === "guides") {
     const t = await getTranslations({ locale: p.locale, namespace: "Guides" });
     // Only the languages that have guides.
-    const languages = Object.fromEntries(guideLocales.map((l) => [l, `/${l}/${guidesSlugs[l]}`]));
+    const languages = Object.fromEntries(guideLocales.filter(isIndexedLocale).map((l) => [l, `/${l}/${guidesSlugs[l]}`]));
     return {
       title: `${t("indexMetaTitle")} — Fileflect`,
       description: t("indexIntro"),

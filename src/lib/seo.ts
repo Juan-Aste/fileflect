@@ -2,11 +2,11 @@ import type { MetadataRoute } from "next";
 import { allToolsSlugs, categorySlug, publishedCategories } from "@/config/categories";
 import { conversionPages, conversionSlug } from "@/config/conversion-pages";
 import { creditsSlugs } from "@/config/credits";
-import { isIndexedCategory, isIndexedConversion, isIndexedTool } from "@/config/indexing";
+import { hreflangLocales, isIndexedCategory, isIndexedConversion, isIndexedLocale, isIndexedTool } from "@/config/indexing";
 import { availableTools, tools } from "@/config/tools";
 import { longtailPages, longtailTranslation } from "@/content/longtail";
 import { guideLocales, guidePath, guides, guidesFor, guidesSlugs } from "@/content/guides/meta";
-import { defaultLocale, locales, type Locale } from "@/i18n/routing";
+import { defaultLocale, type Locale } from "@/i18n/routing";
 import { proEnabled } from "@/lib/pro";
 
 /**
@@ -40,7 +40,7 @@ export function alternatesFor(locale: Locale, path: LocalizedPath) {
   return {
     canonical: `/${locale}${path(locale)}`,
     languages: {
-      ...Object.fromEntries(locales.map((l) => [l, `/${l}${path(l)}`])),
+      ...Object.fromEntries(hreflangLocales.map((l) => [l, `/${l}${path(l)}`])),
       "x-default": `/${defaultLocale}${path(defaultLocale)}`,
     },
   };
@@ -62,16 +62,16 @@ export function sitemapEntries(base = siteUrl()): MetadataRoute.Sitemap {
     ...conversionPages.filter(isIndexedConversion).map((c) => ({ path: (l: Locale) => `/${conversionSlug(c, l)}`, priority: 0.8 })),
   ];
   const localized = pages.flatMap(({ path, priority }) =>
-    locales.map((locale) => ({
+    hreflangLocales.map((locale) => ({
       url: `${base}/${locale}${path(locale)}`,
       changeFrequency: "monthly" as const,
       priority,
-      alternates: { languages: Object.fromEntries(locales.map((l) => [l, `${base}/${l}${path(l)}`])) },
+      alternates: { languages: Object.fromEntries(hreflangLocales.map((l) => [l, `${base}/${l}${path(l)}`])) },
     })),
   );
   // Long-tail pages exist only in the languages they were written in.
-  const longtail = longtailPages.map((page) => {
-    const versions = locales.flatMap((l) => {
+  const longtail = longtailPages.filter((page) => isIndexedLocale(page.locale)).map((page) => {
+    const versions = hreflangLocales.flatMap((l) => {
       const t = longtailTranslation(page, l);
       return t ? [[l, `${base}/${l}/${t.slug}`] as const] : [];
     });
@@ -83,16 +83,17 @@ export function sitemapEntries(base = siteUrl()): MetadataRoute.Sitemap {
     };
   });
   // Guides and their index exist only in the languages they are written in.
-  const indexes = guideLocales.map((locale) => ({
+  const indexedGuideLocales = guideLocales.filter(isIndexedLocale);
+  const indexes = indexedGuideLocales.map((locale) => ({
     url: `${base}/${locale}/${guidesSlugs[locale]}`,
     // The index changes when a guide is added or updated.
     lastModified: guidesFor(locale)[0].updated,
     changeFrequency: "weekly" as const,
     priority: 0.6,
-    alternates: { languages: Object.fromEntries(guideLocales.map((l) => [l, `${base}/${l}/${guidesSlugs[l]}`])) },
+    alternates: { languages: Object.fromEntries(indexedGuideLocales.map((l) => [l, `${base}/${l}/${guidesSlugs[l]}`])) },
   }));
   const articles = guides.flatMap((guide) => {
-    const versions = locales.flatMap((l) => {
+    const versions = hreflangLocales.flatMap((l) => {
       const path = guidePath(guide, l);
       return path ? [[l, `${base}/${l}${path}`] as const] : [];
     });

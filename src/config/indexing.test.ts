@@ -3,7 +3,7 @@ import { locales } from "@/i18n/routing";
 import { sitemapEntries } from "@/lib/seo";
 import { conversionPages, conversionSlug } from "./conversion-pages";
 import { categorySlug, publishedCategories } from "./categories";
-import { indexedConversionPairs, isIndexedCategory, isIndexedConversion, isIndexedTool, noindexTools } from "./indexing";
+import { indexedConversionPairs, indexedLocales, isIndexedCategory, isIndexedConversion, isIndexedLocale, isIndexedTool, noindexTools } from "./indexing";
 import { availableTools, tools } from "./tools";
 
 describe("indexing", () => {
@@ -30,14 +30,22 @@ describe("indexing", () => {
     const urls = new Set(sitemapEntries("https://x").map((e) => e.url));
     for (const locale of locales) {
       for (const c of conversionPages) {
-        expect(urls.has(`https://x/${locale}/${conversionSlug(c, locale)}`), conversionSlug(c, locale)).toBe(isIndexedConversion(c));
+        expect(urls.has(`https://x/${locale}/${conversionSlug(c, locale)}`), conversionSlug(c, locale)).toBe(isIndexedLocale(locale) && isIndexedConversion(c));
       }
       for (const c of publishedCategories) {
-        expect(urls.has(`https://x/${locale}/${categorySlug(c, locale)}`), c).toBe(isIndexedCategory(c));
+        expect(urls.has(`https://x/${locale}/${categorySlug(c, locale)}`), c).toBe(isIndexedLocale(locale) && isIndexedCategory(c));
       }
       for (const id of availableTools) {
-        expect(urls.has(`https://x/${locale}/${tools[id].slugs[locale]}`), id).toBe(isIndexedTool(id));
+        expect(urls.has(`https://x/${locale}/${tools[id].slugs[locale]}`), id).toBe(isIndexedLocale(locale) && isIndexedTool(id));
       }
+    }
+  });
+
+  it("keeps French and Chinese out of the sitemap and of every hreflang set", () => {
+    expect(indexedLocales).toEqual(["es", "en", "pt"]);
+    for (const entry of sitemapEntries("https://x")) {
+      expect(entry.url, entry.url).toMatch(/^https:\/\/x\/(es|en|pt)(\/|$)/);
+      for (const lang of Object.keys(entry.alternates?.languages ?? {})) expect(isIndexedLocale(lang), `${entry.url} ${lang}`).toBe(true);
     }
   });
 });

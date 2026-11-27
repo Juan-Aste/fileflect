@@ -1,6 +1,7 @@
 // Phase 19.2b: indexed conversion pages carry text of their own (when to
 // convert, differences, what is kept and lost, limits, steps, FAQ with
 // FAQPage data), in every language, accessible and without overflow.
+import { isIndexedLocale } from "../../src/config/indexing";
 import { conversionSlug } from "../../src/config/conversion-pages";
 import { conversionContentByLocale } from "../../src/content/conversions";
 import type { FormatId } from "../../src/config/formats";
@@ -25,7 +26,8 @@ test.describe("conversion pages with own content", () => {
         const c = conversionContentByLocale[locale][key as keyof (typeof conversionContentByLocale)[typeof locale]]!;
         const response = await page.goto(path, { waitUntil: "networkidle" });
         expect(response?.status(), path).toBe(200);
-        await expect(page.locator('meta[name="robots"][content*="noindex"]'), path).toHaveCount(0);
+        // French and Chinese pages are noindex as a whole language (phase 20.5a).
+        await expect(page.locator('meta[name="robots"][content*="noindex"]'), path).toHaveCount(isIndexedLocale(locale) ? 0 : 1);
         for (const id of ["when", "how", "differences", "kept", "lost", "limits", "faq"]) {
           await expect(page.locator(`h2#${id}`), `${path} #${id}`).toBeVisible();
         }

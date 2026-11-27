@@ -1,3 +1,4 @@
+import { hreflangLocales } from "@/config/indexing";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!guide) return {};
   const locale = p.locale as Locale;
   const version = guide.versions[locale]!;
-  const languages = Object.fromEntries(locales.flatMap((l) => (guide.versions[l] ? [[l, `/${l}${guidePath(guide, l)}`]] : [])));
+  const languages = Object.fromEntries(hreflangLocales.flatMap((l) => (guide.versions[l] ? [[l, `/${l}${guidePath(guide, l)}`]] : [])));
   const { shots } = renderGuide(guideBodies[guide.id]![locale]!, locale);
   return {
     title: `${version.title} — Fileflect`,
