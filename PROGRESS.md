@@ -4208,3 +4208,10 @@ FASE 19 TERMINADA (es la «FASE 17» de la tarea programada: calidad para Google
 - Tests: `families.test.ts`, `tests/e2e/families.spec.ts`; ajustados a los idiomas indexados `indexing.test.ts`, `seo.test.ts`, `categories.test.ts`, `guides.test.ts`, `seo-urls.spec.ts`, `conversion-content.spec.ts`, `legacy-media.spec.ts`. El CI completo (check, e2e-browsers, e2e-ai-voice) pasó sobre ae2691a. PR #17 de dev a main, para que lo mergee el dueño.
 - PLAN.md: Fase 20 partida en tareas del tamaño de una ejecución (20.2a … 20.6), con las reglas comunes, para la tarea programada «Fileflect: Fase 20».
 - Pendiente del dueño: mergear el PR #17; después, en Search Console, reenviar el sitemap.
+
+## 2026-11-27 — Fase 20, tarea 20.2a: opciones de las herramientas que se juntan (lista previa)
+- **Ordenar PDF** (`OrganizePdfTool`): miniaturas; arrastrar para reordenar; por página ← / → (mover), ↻ (girar 90°) y 🗑 (eliminar, nunca la última); «Restaurar todas»; resultado `-organized.pdf`.
+- **Rotar PDF** (`RotatePdfTool`): giro 90° derecha / 180° / 90° izquierda; todas las páginas o «Solo algunas» con rangos (placeholder «1, 3-4»); resultado `-rotated.pdf`.
+- **Eliminar páginas** (`PageSelectPdfTool` delete): selección en miniaturas (`aria-pressed`) sincronizada con rangos; «Seleccionar todas» / «Quitar la selección»; contador `role="status"`; no deja eliminar todas; resultado `-edited.pdf`.
+- **Extraer páginas** (`PageSelectPdfTool` extract): la misma selección; «Un solo PDF con esas páginas» (`-1_3.pdf`) o «Un PDF por página (ZIP)» (`-pages.zip`).
+- Las cuatro registran su propio id en las estadísticas (`trackTool`).

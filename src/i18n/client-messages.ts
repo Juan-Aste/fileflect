@@ -1,4 +1,5 @@
 import type { AbstractIntlMessages } from "next-intl";
+import { modeSiblings } from "@/config/tool-modes";
 
 // Read only by server components: never sent to the browser.
 const SERVER_ONLY = ["Tools", "Legal"];
@@ -25,11 +26,16 @@ export function clientMessages(messages: AbstractIntlMessages): AbstractIntlMess
   return Object.fromEntries(Object.entries(messages).filter(([ns]) => !omit.has(ns)));
 }
 
-/** What one tool's client component needs on top of clientMessages: its `Tools.<id>` entry and the tool namespaces. */
+/**
+ * What one tool's client component needs on top of clientMessages: its
+ * `Tools.<id>` entry, the tool namespaces and, for a mode of a unified tool,
+ * the other modes' button texts (`Tools.<sibling>.action`).
+ */
 export function toolMessages(messages: AbstractIntlMessages, id: string): AbstractIntlMessages {
   const all = messages.Tools as Record<string, AbstractIntlMessages> | undefined;
+  const siblings = modeSiblings(id).map((s) => [s, { action: all?.[s]?.action ?? "" }]);
   return {
     ...Object.fromEntries(TOOL_ONLY.filter((ns) => ns in messages).map((ns) => [ns, messages[ns]])),
-    Tools: { [id]: all?.[id] ?? {} },
+    Tools: { ...Object.fromEntries(siblings), [id]: all?.[id] ?? {} },
   };
 }

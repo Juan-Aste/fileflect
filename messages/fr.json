@@ -3147,7 +3147,15 @@
     "protectNote": "Chiffré en AES 256 bits. Conservez le mot de passe : si vous l’oubliez, personne ne peut le récupérer.",
     "unlockNote": "Il vous faut le mot de passe : cet outil ne devine ni ne casse les mots de passe. Le PDF obtenu s’ouvre sans mot de passe ni restrictions.",
     "skipSmallImages": "Ignorer les petites images (moins de {size} px de côté)",
-    "extractImagesNote": "Les photos enregistrées en JPG sont téléchargées telles quelles, sans perte de qualité ; les autres images sont enregistrées en PNG (avec transparence le cas échéant)."
+    "extractImagesNote": "Les photos enregistrées en JPG sont téléchargées telles quelles, sans perte de qualité ; les autres images sont enregistrées en PNG (avec transparence le cas échéant).",
+    "pagesMode": "Que faire des pages",
+    "pagesModes": {
+      "organize": "Organiser",
+      "rotate": "Pivoter",
+      "delete": "Supprimer",
+      "extract": "Extraire"
+    },
+    "pickRotateHint": "Touchez les pages à faire pivoter ou saisissez leurs numéros."
   },
   "SignPdf": {
     "notCertified": "Cette signature est une image visible sur le PDF, comme une signature à la main. Ce n’est pas une signature électronique certifiée (avec certificat ou clé) et elle ne la remplace pas lorsqu’une démarche l’exige.",

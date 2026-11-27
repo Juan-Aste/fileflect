@@ -3147,7 +3147,15 @@
     "protectNote": "Criptografado com AES de 256 bits. Guarde a senha: se você esquecê-la, ninguém consegue recuperá-la.",
     "unlockNote": "Você precisa da senha: esta ferramenta não adivinha nem quebra senhas. O PDF resultante abre sem senha e sem restrições.",
     "skipSmallImages": "Ignorar imagens pequenas (menos de {size} px de lado)",
-    "extractImagesNote": "Fotos salvas como JPG são baixadas como estão, sem perda de qualidade; as demais imagens são salvas como PNG (com transparência, se tiverem)."
+    "extractImagesNote": "Fotos salvas como JPG são baixadas como estão, sem perda de qualidade; as demais imagens são salvas como PNG (com transparência, se tiverem).",
+    "pagesMode": "O que fazer com as páginas",
+    "pagesModes": {
+      "organize": "Organizar",
+      "rotate": "Girar",
+      "delete": "Excluir",
+      "extract": "Extrair"
+    },
+    "pickRotateHint": "Toque nas páginas que você quer girar ou digite os números."
   },
   "SignPdf": {
     "notCertified": "Esta assinatura é uma imagem visível no PDF, como assinar à mão. Não é uma assinatura digital certificada (com certificado ou token) e não substitui uma quando o processo exige.",
